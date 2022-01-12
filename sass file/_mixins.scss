@@ -1,0 +1,9 @@
+@mixin flex($content,$direction){
+    display: flex;
+    flex-direction: $direction;
+    align-items:center ;
+    justify-content: $content;
+}
+@mixin background($bgcolor) {
+    background-color:$bgcolor;
+}

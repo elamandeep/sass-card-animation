@@ -1,0 +1,96 @@
+@import "./variables";
+@import "./mixins";
+
+// @extend 
+
+html{
+    font-size: 62.5%;
+}
+body{
+    @include flex(center,row);
+    @include background($bg-color);
+    min-height: 100vh;
+    padding-left: $padding;
+    padding-right:$padding;
+}
+
+.card{
+    @include flex(space-between, column);
+    @include background($card-bg);
+    position: relative;
+    padding: $card-padding;
+    border-radius: 5px;
+    font-family: serif;
+    margin: 0px 10px;
+    filter: drop-shadow(1px 2px 5px $card-bg);
+    
+    .card-head{
+        font-size: $head-size;
+        color: $text-color;
+        z-index: 3;
+        transition: color 0.6s ease;
+    }
+
+
+    .card-para{
+        font-size: $para-size;
+        text-align: center;
+        color: $text-color;
+        z-index: 3;
+        transition:color 0.6s ease;
+    }
+
+
+    .btn{
+        font-size: $btn-text;
+        padding: 8px 20px;
+        font-weight: bold;
+        color: $text-color;
+        background-color:transparent;
+        border: 2px solid $text-color;
+        border-radius: 20px;
+        z-index: 3;
+        &:hover{
+            background-color:$text-color;
+        }
+    }
+    
+    &::before{
+        content:"";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        background-color: $hover-bg-color;
+        clip-path: circle(10% at top center);
+        transition: all 0.5s ease-out;         
+        border-radius: 5px;
+    }
+    &:hover{
+        &:before{
+            clip-path: circle(100% at top center);
+        }
+        &:hover .card-head{
+            color: black;
+        }
+        &:hover .card-para{
+            color: black;
+        }
+        &:hover .btn{
+            border: 2px solid black;
+            color: black;
+        }
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    body{
+        @include flex(space-evenly, column);
+    }   
+    .card{
+        padding:2rem;
+        margin: 10px;
+    }
+}
